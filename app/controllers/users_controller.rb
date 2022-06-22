@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
+    authorize User
     render json: @user, status: :ok
   end
 
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
 
   # PUT /users/:id
   def update
+    authorize User
     if @user.update(user_params)
       render json: @user, status: :ok
     else
@@ -37,6 +39,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/:id
   def destroy
+    authorize User
     @user.destroy
   end
 

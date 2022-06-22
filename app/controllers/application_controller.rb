@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   rescue_from AuthorizationError, with: :user_not_authorized
 
   def not_found
-    render json: { error: 'not_found' }
+    render json: { error: 'not_found' }, status: :not_found
   end
 
   def authorize_request
