@@ -9,4 +9,9 @@ class User < ApplicationRecord
   validates :password,
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
+
+  def has_permission?(action)
+    permission = Permission.find_by(action: action)
+    permission.present? ? role_permissions.include?(permission) : false
+  end
 end
